@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AppController {
 
-//    @Autowired
-//    private AppRepository appRepository;
+    @Autowired
+    private AppRepository appRepository;
 
-//    @GetMapping("/startGame")
-//    public ModelAndView initGame() {
-//        return new ModelAndView("blog/list")
-//                .addObject("blogs", appRepository.initGame());
-//    }
+    @GetMapping("/placeholder")
+    public ModelAndView listLocations() {
+        return new ModelAndView("/placeholder")
+                .addObject("placeholder", appRepository.listLocations());
+    }
 
 }

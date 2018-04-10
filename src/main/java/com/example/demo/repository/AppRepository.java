@@ -1,5 +1,9 @@
 package com.example.demo.repository;
 
+import com.example.demo.domain.Location;
+
+import java.util.List;
+
 public interface AppRepository {
-    void initGame();
+    List<Location> listLocations();
 }
