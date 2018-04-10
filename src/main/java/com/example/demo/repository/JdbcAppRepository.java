@@ -27,7 +27,7 @@ public class JdbcAppRepository implements AppRepository {
             while (rs.next()){
                 locations.add(rsLocation(rs));
             }
-            System.out.println("hej");
+
             return locations;
         } catch (SQLException e) {
             throw new AppRepositoryException(e);

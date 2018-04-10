@@ -12,10 +12,10 @@ public class AppController {
     @Autowired
     private AppRepository appRepository;
 
-    @GetMapping("/placeholder")
+    @GetMapping("/game")
     public ModelAndView listLocations() {
-        return new ModelAndView("/placeholder")
-                .addObject("placeholder", appRepository.listLocations());
+        return new ModelAndView("/game")
+                .addObject("locations", appRepository.listLocations());
     }
 
 }
