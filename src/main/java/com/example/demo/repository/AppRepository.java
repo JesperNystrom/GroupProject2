@@ -1,4 +1,5 @@
 package com.example.demo.repository;
 
-public class AppRepository {
+public interface AppRepository {
+    void initGame();
 }
