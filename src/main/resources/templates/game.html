@@ -10,29 +10,43 @@
 <div class="grid">
     <div id="quiz">
         <h1>Arbetstitel</h1>
+
+        <img th:src="${place.image}" />
+
         <hr style ="margin-bottom: 20px"/>
-        <p id="question"></p>
+
+        <p th:text="${place.question}" id="question"></p>
+
         <div class ="buttons">
-            <button id="btn0"><span id="choice0"></span></button>
-            <button id="btn1"><span id="choice1"></span></button>
-            <button id="btn2"><span id="choice2"></span></button>
-            <button id="btn3"><span id="choice3"></span></button>
+            <button id="btn0">
+                <span id="choice0"></span>
+            </button>
+            <button id="btn1">
+                <span id="choice1"></span>
+            </button>
+            <button id="btn2">
+                <span id="choice2"></span>
+            </button>
+            <button id="btn3">
+                <span id="choice3"></span>
+            </button>
         </div>
+
         <hr style="margin-top: 50px"/>
         <footer>
             <p id="progress">Question x of y.</p>
         </footer>
     </div>
 </div>
+<script></script>
 <script src="/quiz_controller.js"></script>
 <script src="/question.js"></script>
 <script src="/app.js"></script>
 
-<img th:src="${place.image}" />
 
 <ul>
     <li th:each="location : ${locations}">
-        <!--<img th:src="${location.image}" />-->
+        <img th:src="${location.image}" />
         <a th:href="@{/game/(id=${location.id})}" th:text="${location.name}" />
     </li>
 </ul>

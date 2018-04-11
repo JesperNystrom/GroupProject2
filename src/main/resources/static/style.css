@@ -2,8 +2,8 @@ body{
     background-color: beige;
 }
 .grid{
-    width: 600px;
-    height: 500px;
+    width: 80%;
+    height: 80%;
     margin: 0 auto;
     background-color: #fff;
     padding: 10px 50px 50px 50px;
@@ -11,6 +11,13 @@ body{
     border: 2px solid blue;
     box-shadow: 10px 15px 5px gray;
 }
+
+img{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
 .grid h1{
     font-family: sans-serif;
     background-color: firebrick;
