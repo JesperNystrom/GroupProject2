@@ -3,12 +3,14 @@ package com.example.demo.domain;
 public class Location {
     private final int id;
     private final String name;
-    private final String coordinates;
+    private final String image;
+    private final String question;
 
-    public Location(int id, String name, String coordinates) {
+    public Location(int id, String name, String image, String question) {
         this.id = id;
         this.name = name;
-        this.coordinates = coordinates;
+        this.image = image;
+        this.question = question;
     }
 
     public int getId() {
@@ -19,7 +21,11 @@ public class Location {
         return name;
     }
 
-    public String getCoordinates() {
-        return coordinates;
+    public String getImage() {
+        return image;
+    }
+
+    public String getQuestion() {
+        return question;
     }
 }

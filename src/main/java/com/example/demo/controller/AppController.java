@@ -15,7 +15,8 @@ public class AppController {
     @GetMapping("/game")
     public ModelAndView listLocations() {
         return new ModelAndView("/game")
-                .addObject("locations", appRepository.listLocations());
+                .addObject("locations", appRepository.listLocations())
+                .addObject("place", appRepository.getLocation());
     }
 
 }

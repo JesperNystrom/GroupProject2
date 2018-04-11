@@ -22,7 +22,7 @@ public class JdbcAppRepository implements AppRepository {
     public List<Location> listLocations() {
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT Id, Location, Coordinates FROM Locations")) {
+             ResultSet rs = stmt.executeQuery("SELECT Id, Location, Image, Question FROM Locations")) {
             List<Location> locations = new ArrayList<>();
             while (rs.next()){
                 locations.add(rsLocation(rs));
@@ -34,7 +34,21 @@ public class JdbcAppRepository implements AppRepository {
         }
     }
 
+    @Override
+    public Location getLocation() {
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT Id, Location, Image, Question FROM Locations")) {
+
+            rs.next();
+            return rsLocation(rs);
+
+        } catch (SQLException e) {
+            throw new AppRepositoryException(e);
+        }
+    }
+
     private Location rsLocation(ResultSet rs) throws SQLException {
-        return new Location(rs.getInt("id"), rs.getString("location"), rs.getString("coordinates"));
+        return new Location(rs.getInt("id"), rs.getString("location"), rs.getString("image"), rs.getString("question"));
     }
 }

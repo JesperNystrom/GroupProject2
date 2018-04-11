@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AppRepository {
     List<Location> listLocations();
+    Location getLocation();
 }
