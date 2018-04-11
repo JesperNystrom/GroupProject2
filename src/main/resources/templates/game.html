@@ -3,7 +3,72 @@
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <link rel="stylesheet" href="/style.css" type="text/css"/>
+    <style>
+        body{
+            background-color: beige;
+        }
+        .grid{
+            width: 80%;
+            height: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 10px 50px 50px 50px;
+            border-radius: 50px;
+            border: 2px solid blue;
+            box-shadow: 10px 15px 5px gray;
+        }
+
+        img{
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .grid h1{
+            font-family: sans-serif;
+            background-color: firebrick;
+            font-size: 60px;
+            text-align: center;
+            color: #fff;
+            padding: 2px 0px;
+            border-radius: 50px;
+        }
+        .grid #question{
+            font-family: sans-serif;
+            font-size: 30px;
+            color: blue;
+        }
+        .buttons{
+            margin-top: 30px;
+        }
+        .btn{
+            background-color:#778897;
+            width: 250px;
+            font-size: 20px;
+            color: #fff;
+            border: 1px solid green;
+            border-radius: 50px;
+            margin: 10px 40px 10px 0px;
+            padding: 10px 10px;
+        }
+        #score{
+            color: #5A6772;
+            text-align: center;
+            font-size: 30px;
+        }
+        #progress{
+            color: goldenrod;
+            font-size: 18px;
+        }
+        .btn:hover{
+            cursor: pointer;
+            background-color: darkslategrey;
+        }
+        .btn:focus{
+            outline:0;
+        }
+    </style>
+    <!--<link rel="stylesheet" href="/style.css" type="text/css"/>-->
 </head>
 <body>
 
@@ -15,21 +80,16 @@
 
         <hr style ="margin-bottom: 20px"/>
 
-        <p th:text="${place.question}" id="question"></p>
+        <h2 th:text="${place.question}"></h2>
+
+
 
         <div class ="buttons">
-            <button id="btn0">
-                <span id="choice0"></span>
-            </button>
-            <button id="btn1">
-                <span id="choice1"></span>
-            </button>
-            <button id="btn2">
-                <span id="choice2"></span>
-            </button>
-            <button id="btn3">
-                <span id="choice3"></span>
-            </button>
+
+            <a th:href="@{/game/{id}/(id=${location.id})}" class="btn" th:each="location : ${locations}" th:id="${location.id}">
+                <span th:text="${location.name}" id="choice0"></span>
+            </a>
+
         </div>
 
         <hr style="margin-top: 50px"/>
@@ -38,10 +98,10 @@
         </footer>
     </div>
 </div>
-<script></script>
-<script src="/quiz_controller.js"></script>
-<script src="/question.js"></script>
-<script src="/app.js"></script>
+<!--<script></script>-->
+<!--<script src="/quiz_controller.js"></script>-->
+<!--<script src="/question.js"></script>-->
+<!--<script src="/app.js"></script>-->
 
 
 <ul>

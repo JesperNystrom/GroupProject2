@@ -24,7 +24,7 @@ public class JdbcAppRepository implements AppRepository {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT Id, Location, Image, Question FROM Locations")) {
             List<Location> locations = new ArrayList<>();
-            while (rs.next()){
+            while (rs.next() && locations.size() < 4){
                 locations.add(rsLocation(rs));
             }
 
