@@ -16,14 +16,36 @@ public class JdbcAppRepository implements AppRepository {
     @Autowired
     private DataSource dataSource;
 
+    // Backup
+//    @Override
+//    public List<Location> listLocations() {
+//        try (Connection conn = dataSource.getConnection();
+//             Statement stmt = conn.createStatement();
+//             ResultSet rs = stmt.executeQuery("SELECT Id, Location, Image, Question FROM Locations")) {
+//            List<Location> locations = new ArrayList<>();
+//            while (rs.next()){
+//                locations.add(rsLocation(rs));
+//            }
+//
+//            return locations;
+//        } catch (SQLException e) {
+//            throw new AppRepositoryException(e);
+//        }
+//    }
+
     @Override
-    public List<Location> listLocations() {
+    public List<Answer> listLocations() {
+
+        int randomQuestion = 4; // temporary, should come as an input variable or something..
+
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT Id, Location, Image, Question FROM Locations")) {
-            List<Location> locations = new ArrayList<>();
+             ResultSet rs = stmt.executeQuery("SELECT Answer FROM Answers " +
+                     "WHERE LocationId = randomQuestion")) {
+            List<Answer> locations = new ArrayList<>();
+
             while (rs.next()){
-                locations.add(rsLocation(rs));
+                locations.add(rsAnswer(rs));
             }
 
             return locations;
@@ -72,7 +94,7 @@ public class JdbcAppRepository implements AppRepository {
 //    }
 
     private Answer rsAnswer(ResultSet rs) throws SQLException {
-        return new Answer(rs.getString("answer"), rs.getInt("locationId"));
+        return new Answer(rs.getString("answer"), rs.getInt("locationId"), rs.getInt("id"));
     }
 
     private Location rsLocation(ResultSet rs) throws SQLException {

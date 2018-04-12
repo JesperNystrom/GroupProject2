@@ -86,8 +86,13 @@
 
         <div class ="buttons">
 
-            <a th:href="@{/game/{id}/(id=${location.id})}" class="btn" th:each="location : ${locations}" th:id="${location.id}">
-                <span th:text="${location.name}" id="choice0"></span>
+            // Backup
+            <!--<a th:href="@{/game/{id}/(id=${location.id})}" class="btn" th:each="location : ${locations}" th:id="${location.id}">-->
+                <!--<span th:text="${location.name}" id="choice0"></span>-->
+            <!--</a>-->
+
+            <a th:href="@{/game/{id}/(id=${answer.id})}" class="btn" th:each="answer : ${answers}" th:id="${answer.id}">
+                <span th:text="${answer.name}" id="choice0"></span>
             </a>
 
         </div>
