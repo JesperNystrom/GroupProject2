@@ -23,7 +23,7 @@ public class AppController {
 
     @GetMapping("/game")
     public ModelAndView listLocations(HttpSession session) {
-        List<Integer> list = (List<Integer>)session.getAttribute("List");
+        List<Integer> list = (List<Integer>) session.getAttribute("List");
         if (list == null) {
             list = new ArrayList<>();
         }
@@ -46,37 +46,28 @@ public class AppController {
                 .addObject("place", appRepository.getQuestion(id));
     }
 
-//    @GetMapping("/game")
-//    public ModelAndView listLocations() {
-//
-//        return new ModelAndView("/game")
-//                .addObject("answers", appRepository.getEverything());
-//    }
-
     @GetMapping("/game/{id}")
     public ModelAndView listLocations(@PathVariable int id, HttpSession session) {
-        Integer score = (Integer)session.getAttribute("Score");
-        if(score == null) {
+        Integer score = (Integer) session.getAttribute("Score");
+        if (score == null) {
             score = 0;
         }
-        int correctID = (Integer)session.getAttribute("ID");
+        int correctID = (Integer) session.getAttribute("ID");
         Location location = appRepository.getQuestion(correctID);
         List<Answer> answers = appRepository.listLocations(correctID);
         for (Answer answer : answers) {
             if (answer.getName().equalsIgnoreCase(location.getName())) {
-                if(answer.getId() == id) {
+                if (answer.getId() == id) {
                     score++;
                     session.setAttribute("Score", score);
                 }
             }
 
         }
-//        List<Location> locations = appRepository.listLocations();
-//        Location location = locations.get(index);
-
         return new ModelAndView("redirect:/game");
     }
-    private boolean duplicateExists (List<Integer> list, int id) {
+
+    private boolean duplicateExists(List<Integer> list, int id) {
         for (Integer integer : list) {
             if (integer == id) {
                 return true;
