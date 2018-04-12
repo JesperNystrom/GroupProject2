@@ -23,42 +23,46 @@ public class JdbcAppRepository implements AppRepository {
 
 
     @Override
-    public List<Answer> listLocations() {
+    public List<Answer> listLocations(int id) {
 
-        int randomQuestion = 4; // temporary, should come as an input variable or something..
+
+        //int randomQuestion = 4; // temporary, should come as an input variable or something..
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT id, answer, locationId FROM Answers WHERE LocationId = ?")) {
-            ps.setInt(1, randomQuestion);
+            ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 List<Answer> answers = new ArrayList<>();
                 while(rs.next()) {
                     answers.add(rsAnswer(rs));
+
                 }
 
                 return answers;
 
             }
 
-        } catch (SQLException e) {
+
+        } catch (SQLException e)  {
             throw new AppRepositoryException(e);
         }
+
 
     }
 
 
     @Override
-    public Location getQuestion() {
+    public Location getQuestion(int id) {
 
 
-        Random rand = new Random();
+       /* Random rand = new Random();
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         int randomQuestion = 0;
 
         for (int i = 0; i < list.size(); i++) {
             int randomIndex = rand.nextInt(list.size());
-            randomQuestion = list.get(randomIndex);
+            randomQuestion = list.get(randomIndex);*/
 
 
             try (Connection conn = dataSource.getConnection();
@@ -66,7 +70,8 @@ public class JdbcAppRepository implements AppRepository {
                  PreparedStatement ps = conn.prepareStatement("SELECT id, Location, Image, Question FROM Locations " +
                          "WHERE id = ?")) {
 
-                ps.setInt(1, randomQuestion);
+                ps.setInt(1, id);
+
                 try (ResultSet rs = ps.executeQuery()) {
                     rs.next();
 //                    list.remove(randomQuestion);
@@ -78,8 +83,8 @@ public class JdbcAppRepository implements AppRepository {
                 throw new AppRepositoryException(e);
             }
         }
-        return null;
-    }
+        //return null;
+    //}
 
 
 
@@ -136,6 +141,7 @@ public class JdbcAppRepository implements AppRepository {
         private Question rsQuestion (ResultSet rs) throws SQLException {
             return new Question(rs.getString("Question"));
         }
+
 
     }
 
