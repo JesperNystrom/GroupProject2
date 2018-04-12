@@ -20,7 +20,7 @@ public class AppController {
     public ModelAndView listLocations() {
 
         return new ModelAndView("/game")
-                .addObject("locations", appRepository.listLocations())
+                .addObject("answers", appRepository.listLocations())
                 .addObject("place", appRepository.getQuestion());
     }
 
@@ -38,7 +38,7 @@ public class AppController {
 //        Location location = locations.get(index);
 
         return new ModelAndView("/game")
-                .addObject("locations", appRepository.listLocations())
+                .addObject("answers", appRepository.listLocations())
                 .addObject("place", appRepository.getQuestion());
     }
 

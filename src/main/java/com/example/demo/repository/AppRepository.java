@@ -6,7 +6,7 @@ import com.example.demo.domain.Location;
 import java.util.List;
 
 public interface AppRepository {
-    List<Location> listLocations();
+    List<Answer> listLocations();
     Location getQuestion();
 //    List<Answer> listAnswer();
 }
