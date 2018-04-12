@@ -48,6 +48,8 @@ public class JdbcAppRepository implements AppRepository {
         }
     }
 
+
+
     private Location rsLocation(ResultSet rs) throws SQLException {
         return new Location(rs.getInt("id"), rs.getString("location"), rs.getString("image"), rs.getString("question"));
     }
