@@ -21,7 +21,7 @@ public class AppController {
 
         return new ModelAndView("/game")
                 .addObject("locations", appRepository.listLocations())
-                .addObject("place", appRepository.getLocation());
+                .addObject("place", appRepository.getQuestion());
     }
 
 //    @GetMapping("/game")
