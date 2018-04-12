@@ -52,7 +52,7 @@ public class JdbcAppRepository implements AppRepository {
 
 
             try (Connection conn = dataSource.getConnection();
-                 PreparedStatement ps = conn.prepareStatement("SELECT ?, Location, Image, Question FROM Locations")) {
+                 PreparedStatement ps = conn.prepareStatement("SELECT Id, Location, Image, Question FROM Locations where id= ?")) {
                 ps.setInt(1, randomQuestion);
                 try (ResultSet rs = ps.executeQuery()) {
                     rs.next();
@@ -94,13 +94,9 @@ public class JdbcAppRepository implements AppRepository {
 
     private Location rsLocation(ResultSet rs) throws SQLException {
         return new Location(rs.getInt("id"), rs.getString("location"), rs.getString("image"), rs.getString("question"));
-
+    }
         private Answer rsAnswer (ResultSet rs) throws SQLException {
             return new Answer(rs.getString("answer"), rs.getInt("locationId"));
-        }
-
-        private Location rsLocation (ResultSet rs) throws SQLException {
-            return new Location(rs.getInt("id"), rs.getString("location"), rs.getString("image"), rs.getString("question"));
         }
 
         private Question rsQuestion (ResultSet rs) throws SQLException {
