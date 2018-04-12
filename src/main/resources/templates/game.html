@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Title</title>
     <style>
-        body{
+        body {
             background-color: beige;
         }
-        .grid{
+
+        .grid {
             width: 80%;
             height: 80%;
             margin: 0 auto;
@@ -18,13 +19,13 @@
             box-shadow: 10px 15px 5px gray;
         }
 
-        img{
+        img {
             display: block;
             width: 80%;
             margin: 0 auto;
         }
 
-        .grid h1{
+        .grid h1 {
             font-family: sans-serif;
             background-color: firebrick;
             font-size: 60px;
@@ -33,16 +34,19 @@
             padding: 2px 0px;
             border-radius: 50px;
         }
-        .grid #question{
+
+        .grid #question {
             font-family: sans-serif;
             font-size: 30px;
             color: blue;
         }
-        .buttons{
+
+        .buttons {
             margin-top: 30px;
         }
-        .btn{
-            background-color:#778897;
+
+        .btn {
+            background-color: #778897;
             width: 250px;
             font-size: 20px;
             color: #fff;
@@ -51,21 +55,25 @@
             margin: 10px 40px 10px 0px;
             padding: 10px 10px;
         }
-        #score{
+
+        #score {
             color: #5A6772;
             text-align: center;
             font-size: 30px;
         }
-        #progress{
+
+        #progress {
             color: goldenrod;
             font-size: 18px;
         }
-        .btn:hover{
+
+        .btn:hover {
             cursor: pointer;
             background-color: darkslategrey;
         }
-        .btn:focus{
-            outline:0;
+
+        .btn:focus {
+            outline: 0;
         }
     </style>
     <!--<link rel="stylesheet" href="/style.css" type="text/css"/>-->
@@ -76,21 +84,16 @@
     <div id="quiz">
         <h1>Arbetstitel</h1>
 
-        <img th:src="${place.image}" />
+        <img th:src="${place.image}"/>
 
-        <hr style ="margin-bottom: 20px"/>
+        <hr style="margin-bottom: 20px"/>
 
         <h2 th:text="${place.question}"></h2>
 
 
+        <div class="buttons">
 
-        <div class ="buttons">
-
-            // Backup
-            <!--<a th:href="@{/game/{id}/(id=${location.id})}" class="btn" th:each="location : ${locations}" th:id="${location.id}">-->
-                <!--<span th:text="${location.name}" id="choice0"></span>-->
-            <!--</a>-->
-
+            
             <a th:href="@{/game/{id}/(id=${answer.id})}" class="btn" th:each="answer : ${answers}" th:id="${answer.id}">
                 <span th:text="${answer.name}" id="choice0"></span>
             </a>
@@ -103,18 +106,6 @@
         </footer>
     </div>
 </div>
-<!--<script></script>-->
-<!--<script src="/quiz_controller.js"></script>-->
-<!--<script src="/question.js"></script>-->
-<!--<script src="/app.js"></script>-->
-
-
-<!--<ul>-->
-    <!--<li th:each="location : ${locations}">-->
-        <!--<img th:src="${location.image}" />-->
-        <!--<a th:href="@{/game/(id=${location.id})}" th:text="${location.name}" />-->
-    <!--</li>-->
-<!--</ul>-->
 
 </body>
 </html>
