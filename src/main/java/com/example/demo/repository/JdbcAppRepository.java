@@ -68,10 +68,7 @@ public class JdbcAppRepository implements AppRepository {
         return null;
     }
 
-    @Override
-    public List<Answer> listAnswer() {
-        return null;
-    }
+
 
     /*@Override
     public List<Answer> listAnswer() {

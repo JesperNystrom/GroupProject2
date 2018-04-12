@@ -76,18 +76,18 @@
     <div id="quiz">
         <h1>Arbetstitel</h1>
 
-        <!--<img th:src="${place.image}" />-->
+        <img th:src="${place.image}" />
 
         <hr style ="margin-bottom: 20px"/>
 
-        <!--<h2 th:text="${place.question}"></h2>-->
+        <h2 th:text="${place.question}"></h2>
 
 
 
         <div class ="buttons">
 
-            <a th:href="@{/game/{id}/(id=${answer.locationId)}" class="btn" th:each="answer : ${answers}" th:id="${answer.locationId}">
-                <span th:text="${answer.name}" id="choice0"></span>
+            <a th:href="@{/game/{id}/(id=${location.id})}" class="btn" th:each="location : ${locations}" th:id="${location.id}">
+                <span th:text="${location.name}" id="choice0"></span>
             </a>
 
         </div>
