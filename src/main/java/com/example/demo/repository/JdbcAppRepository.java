@@ -22,7 +22,7 @@ public class JdbcAppRepository implements AppRepository {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT Id, Location, Image, Question FROM Locations")) {
             List<Location> locations = new ArrayList<>();
-            while (rs.next() && locations.size() < 4){
+            while (rs.next()){
                 locations.add(rsLocation(rs));
             }
 
@@ -36,11 +36,11 @@ public class JdbcAppRepository implements AppRepository {
     public Location getQuestion() {
 
         // ?
-        int randomQuestion = 4;
-//        List<Integer>
+        int randomQuestion = 4; // getRandom()
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement("SELECT ?, Location, Image, Question FROM Locations")) {
+             PreparedStatement ps = conn.prepareStatement("SELECT id, Location, Image, Question FROM Locations " +
+                     "WHERE id = ?")) {
             ps.setInt(1, randomQuestion);
             try (ResultSet rs = ps.executeQuery()) {
                 rs.next();
@@ -52,24 +52,24 @@ public class JdbcAppRepository implements AppRepository {
         }
     }
 
-    @Override
-    public List<Answer> listAnswer() {
-        try (Connection conn = dataSource.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("select * from Locations inner join Answers\n" +
-                     "on Answers.LocationID=Locations.ID")) {
-
-            List<Answer> answers = new ArrayList<>();
-
-            while (rs.next() && ){
-                answers.add(rsAnswer(rs));
-            }
-
-            return answers;
-        } catch (SQLException e) {
-            throw new AppRepositoryException(e);
-        }
-    }
+//    @Override
+//    public List<Answer> listAnswer() {
+//        try (Connection conn = dataSource.getConnection();
+//             Statement stmt = conn.createStatement();
+//             ResultSet rs = stmt.executeQuery("select * from Locations inner join Answers\n" +
+//                     "on Answers.LocationID=Locations.ID")) {
+//
+//            List<Answer> answers = new ArrayList<>();
+//
+//            while (rs.next() && ){
+//                answers.add(rsAnswer(rs));
+//            }
+//
+//            return answers;
+//        } catch (SQLException e) {
+//            throw new AppRepositoryException(e);
+//        }
+//    }
 
     private Answer rsAnswer(ResultSet rs) throws SQLException {
         return new Answer(rs.getString("answer"), rs.getInt("locationId"));

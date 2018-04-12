@@ -8,5 +8,5 @@ import java.util.List;
 public interface AppRepository {
     List<Location> listLocations();
     Location getQuestion();
-    List<Answer> listAnswer();
+//    List<Answer> listAnswer();
 }
