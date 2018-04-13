@@ -30,7 +30,12 @@ public class AppController {
         Random rand = new Random();
         int id;
         if (list.size() == 6) {
-            return new ModelAndView("Score");
+            Integer score = (Integer) session.getAttribute("Score");
+            String showScore = "Du fick " + score + " poäng av 6 möjliga!";
+            String scoreMessage = checkScore(score);
+            return new ModelAndView("Score")
+                    .addObject("score", showScore)
+                    .addObject("message", scoreMessage);
         }
         do {
             id = rand.nextInt(6) + 1;
@@ -39,9 +44,7 @@ public class AppController {
         list.add(id);
         session.setAttribute("List", list);
 
-
         return new ModelAndView("/game")
-
                 .addObject("answers", appRepository.listLocations(id))
                 .addObject("place", appRepository.getQuestion(id));
     }
@@ -62,9 +65,19 @@ public class AppController {
                     session.setAttribute("Score", score);
                 }
             }
-
         }
         return new ModelAndView("redirect:/game");
+    }
+
+    private String checkScore(int score) {
+        if(score == 6)
+            return "Strålande!";
+        else if(score > 4)
+            return "Bra jobbat, bättre kan du...";
+        else if(score > 2)
+            return "Eh...";
+        else
+            return "Skäms!";
     }
 
     private boolean duplicateExists(List<Integer> list, int id) {
