@@ -53,6 +53,7 @@
 
         .buttons {
             margin-top: 30px;
+            text-align: center;
         }
 
         .btn {
@@ -60,11 +61,13 @@
             background-color: #778897;
             width: 150px;
             font-size: 20px;
+            text-align: center;
             color: #fff;
             border: 1px solid green;
             border-radius: 50px;
             margin: 10px 40px 10px 0px;
             padding: 10px 10px;
+            display: inline;
 
         }
 
@@ -107,7 +110,7 @@
 
             
             <a th:href="@{/game/{id}/(id=${answer.id})}" class="btn" th:each="answer : ${answers}" th:id="${answer.id}" style="text-decoration: none">
-                <span  th:text="${answer.name}" id="choice0" style ="width: 170px; margin-right: 100px"></span>
+                <span  th:text="${answer.name}" id="choice0" style ="width: auto; margin-right: auto"></span>
             </a>
 
         </div>
