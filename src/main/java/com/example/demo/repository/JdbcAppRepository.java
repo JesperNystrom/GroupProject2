@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class JdbcAppRepository implements AppRepository {
@@ -21,6 +23,7 @@ public class JdbcAppRepository implements AppRepository {
     @Override
     public List<Answer> listLocations(int id) {
 
+
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT id, answer, locationId FROM Answers WHERE LocationId = ?")) {
             ps.setInt(1, id);
@@ -29,7 +32,7 @@ public class JdbcAppRepository implements AppRepository {
                 while (rs.next()) {
                     answers.add(rsAnswer(rs));
                 }
-
+                Collections.shuffle(answers);
                 return answers;
             }
 
@@ -41,7 +44,6 @@ public class JdbcAppRepository implements AppRepository {
 
     @Override
     public Location getQuestion(int id) {
-
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT id, Location, Image, Question FROM Locations " +
