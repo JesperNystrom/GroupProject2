@@ -54,6 +54,7 @@
             border-radius: 50px;
             margin: 10px 40px 10px 0px;
             padding: 10px 10px;
+
         }
 
         #score {
@@ -84,7 +85,7 @@
     <div id="quiz">
         <h1>Arbetstitel</h1>
 
-        <img th:src="${place.image}"/>
+        <img th:src="${place.image}" style ="max-height:500px"/>
 
         <hr style="margin-bottom: 20px"/>
 
@@ -94,8 +95,8 @@
         <div class="buttons">
 
             
-            <a th:href="@{/game/{id}/(id=${answer.id})}" class="btn" th:each="answer : ${answers}" th:id="${answer.id}">
-                <span th:text="${answer.name}" id="choice0"></span>
+            <a th:href="@{/game/{id}/(id=${answer.id})}" class="btn" th:each="answer : ${answers}" th:id="${answer.id}" style="text-decoration: none">
+                <span  th:text="${answer.name}" id="choice0" style ="width: 250px; margin-right: 100px"></span>
             </a>
 
         </div>

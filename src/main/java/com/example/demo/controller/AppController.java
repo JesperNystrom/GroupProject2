@@ -30,12 +30,16 @@ public class AppController {
         Random rand = new Random();
         int id;
         if (list.size() == 6) {
+
+        
+
             Integer score = (Integer) session.getAttribute("Score");
             String showScore = "Du fick " + score + " poäng av 6 möjliga!";
             String scoreMessage = checkScore(score);
-            return new ModelAndView("Score")
+            return new ModelAndView("/score")
                     .addObject("score", showScore)
                     .addObject("message", scoreMessage);
+
         }
         do {
             id = rand.nextInt(6) + 1;
@@ -48,6 +52,7 @@ public class AppController {
                 .addObject("answers", appRepository.listLocations(id))
                 .addObject("place", appRepository.getQuestion(id));
     }
+
 
     @GetMapping("/game/{id}")
     public ModelAndView listLocations(@PathVariable int id, HttpSession session) {
@@ -89,5 +94,4 @@ public class AppController {
         }
         return false;
     }
-
 }
