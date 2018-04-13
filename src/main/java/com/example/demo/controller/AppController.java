@@ -31,7 +31,7 @@ public class AppController {
         int id;
         if (list.size() == 6) {
 
-        
+
 
             Integer score = (Integer) session.getAttribute("Score");
             String showScore = "Du fick " + score + " poäng av 6 möjliga!";
