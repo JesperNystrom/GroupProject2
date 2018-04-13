@@ -32,10 +32,12 @@ public class AppController {
         if (list.size() == 6) {
 
 
-
             Integer score = (Integer) session.getAttribute("Score");
+            score = checkNullScore(score);
             String showScore = "Du fick " + score + " poäng av 6 möjliga!";
             String scoreMessage = checkScore(score);
+            session.invalidate();
+
             return new ModelAndView("/score")
                     .addObject("score", showScore)
                     .addObject("message", scoreMessage);
@@ -57,9 +59,7 @@ public class AppController {
     @GetMapping("/game/{id}")
     public ModelAndView listLocations(@PathVariable int id, HttpSession session) {
         Integer score = (Integer) session.getAttribute("Score");
-        if (score == null) {
-            score = 0;
-        }
+        score = checkNullScore(score);
         int correctID = (Integer) session.getAttribute("ID");
         Location location = appRepository.getQuestion(correctID);
         List<Answer> answers = appRepository.listLocations(correctID);
@@ -93,5 +93,13 @@ public class AppController {
 
         }
         return false;
+    }
+
+    private Integer checkNullScore(Integer score) {
+        if (score == null) {
+            return 0;
+        }
+
+        return score;
     }
 }
