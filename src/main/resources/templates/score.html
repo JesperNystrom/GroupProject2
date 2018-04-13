@@ -84,25 +84,14 @@
     <div id="quiz">
         <h1 th:text="${score}">Poäng</h1>
 
-        <!--<img th:src="${place.image}"/>-->
-
-        <!--<hr style="margin-bottom: 20px"/>-->
-
-        <!--<h2 th:text="${place.question}"></h2>-->
-
-
         <div class="buttons">
             <h2 th:text="${message}">message</h2>
-            <!--<a th:href="@{/game/{id}/(id=${answer.id})}" class="btn" th:each="answer : ${answers}" th:id="${answer.id}">-->
-                <!--<span th:text="${answer.name}" id="choice0"></span>-->
-            <!--</a>-->
+
+            <a id="startbtn" href="/game">Spela igen?</a>
 
         </div>
 
-        <hr style="margin-top: 50px"/>
-        <footer>
-            <p th:text="${score}" id="progress"></p>
-        </footer>
+
     </div>
 </div>
 
