@@ -30,7 +30,7 @@ public class AppController {
         Random rand = new Random();
         int id;
         if (list.size() == 6) {
-            return new ModelAndView("Score");
+            return new ModelAndView("/score");
         }
         do {
             id = rand.nextInt(6) + 1;
@@ -45,6 +45,7 @@ public class AppController {
                 .addObject("answers", appRepository.listLocations(id))
                 .addObject("place", appRepository.getQuestion(id));
     }
+
 
     @GetMapping("/game/{id}")
     public ModelAndView listLocations(@PathVariable int id, HttpSession session) {
@@ -76,5 +77,4 @@ public class AppController {
         }
         return false;
     }
-
 }
